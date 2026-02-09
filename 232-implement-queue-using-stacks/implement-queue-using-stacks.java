@@ -1,7 +1,7 @@
 class MyQueue {
 
-        private ArrayList<Integer> stackA = new ArrayList();
-        private ArrayList<Integer> stackB = new ArrayList();
+    private ArrayList<Integer> stackA = new ArrayList();
+    private ArrayList<Integer> stackB = new ArrayList();
 
     public MyQueue() {
 
@@ -12,52 +12,50 @@ class MyQueue {
     }
 
     public int pop() {
-        if (stackB.isEmpty() && stackA.isEmpty()) {
+        if (stackA.isEmpty() && stackB.isEmpty())
             return -1;
-        }
 
-        int toRemove = 0;
-
-        if (stackB.isEmpty()) {
+        int itemToPop = 0;
+        if (stackB.size() == 0) {
             for (int i = stackA.size() - 1; i >= 0; i--) {
                 stackB.add(stackA.get(i));
-                stackA.remove(i);
             }
-            toRemove = stackB.get(stackB.size() - 1);
+            stackA.clear();
+            itemToPop = stackB.get(stackB.size() - 1);
             stackB.remove(stackB.size() - 1);
+            return itemToPop;
         } else {
-            toRemove = stackB.get(stackB.size() - 1);
+            itemToPop = stackB.get(stackB.size() - 1);
             stackB.remove(stackB.size() - 1);
+            return itemToPop;
         }
-        return toRemove;
     }
 
-
     public int peek() {
-        if (stackB.isEmpty() && stackA.isEmpty()) {
+        if (stackA.isEmpty() && stackB.isEmpty())
             return -1;
-        }
 
-        int toPeek = 0;
-
-        if (stackB.isEmpty()) {
+        int itemToPeep = 0;
+        if (stackB.size() == 0) {
             for (int i = stackA.size() - 1; i >= 0; i--) {
                 stackB.add(stackA.get(i));
-                stackA.remove(i);
             }
-            toPeek = stackB.get(stackB.size() - 1);
+            stackA.clear();
+            itemToPeep = stackB.get(stackB.size() - 1);
+            return itemToPeep;
         } else {
-            toPeek = stackB.get(stackB.size() - 1);
+            itemToPeep = stackB.get(stackB.size() - 1);
+            return itemToPeep;
         }
-        return toPeek;
-
     }
 
     public boolean empty() {
-        if(stackA.isEmpty() && stackB.isEmpty()){
+        if (stackA.isEmpty() && stackB.isEmpty()) {
             return true;
+        } else {
+            return false;
         }
-        return false;
+
     }
 }
 
